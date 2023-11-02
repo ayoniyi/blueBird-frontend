@@ -1,0 +1,111 @@
+@import '../../variables';
+@import '../../mixins';
+
+.container {
+  padding: 1em;
+  border-bottom: 1px solid #2f3336;
+  width: 100%;
+}
+.m5 {
+  margin-top: 5em;
+}
+.top {
+  @include flexRegular(row, flex-start);
+
+  .topImg {
+    img {
+      margin-right: 1em;
+      object-fit: cover;
+      border-radius: 50%;
+      width: 55px;
+      height: 55px;
+      transition: 0.17s ease-in;
+    }
+  }
+  /*** **/
+  @media (max-width: 450px) {
+    .topImg {
+      img {
+        width: 35px;
+        height: 35px;
+      }
+    }
+  }
+
+  input {
+    outline: none;
+    color: rgba(255, 255, 255, 0.87);
+    font-size: 1.1em;
+    border: 0;
+    background: none;
+    //background: lavender;
+    width: 100%;
+    ::placeholder {
+      /* Chrome, Firefox, Opera, Safari 10.1+ */
+      color: rgba(128, 128, 128, 0.555);
+      //opacity: 1; /* Firefox */
+    }
+
+    :-ms-input-placeholder {
+      /* Internet Explorer 10-11 */
+      color: rgba(128, 128, 128, 0.555);
+    }
+
+    ::-ms-input-placeholder {
+      /* Microsoft Edge */
+      color: rgba(128, 128, 128, 0.555);
+    }
+  }
+  /*** **/
+  @media (max-width: 450px) {
+    input {
+      font-size: 1em;
+    }
+  }
+}
+.bottom {
+  // background: pink;
+  @include flexRegular(row, space-between);
+  align-items: center;
+  margin: 1.5em 0 0 0;
+  width: 87%;
+  margin-left: 13%;
+  img {
+    cursor: pointer;
+  }
+  button {
+    @include buttonRegular($blueBtn, 20%, 42px);
+    outline: none;
+    border: 0;
+    &:hover {
+      @include buttonRegular($blueDark, 20%, 42px);
+    }
+    &:disabled {
+      opacity: 0.5;
+    }
+  }
+  /*** **/
+  @media (max-width: 450px) {
+    button {
+      @include buttonRegular($blueBtn, 30%, 36px);
+    }
+  }
+}
+.fileContainer {
+  //background: lavender;
+  position: relative;
+  margin: 1em 0 1em 13%;
+  padding: 0;
+  img {
+    width: 100%;
+    object-fit: contain;
+    border-radius: 20px;
+  }
+  .cancel {
+    position: absolute;
+    top: 0.2em;
+    cursor: pointer;
+    right: 0.3em;
+    opacity: 0.8;
+  }
+}

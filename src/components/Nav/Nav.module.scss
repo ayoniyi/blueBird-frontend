@@ -1,0 +1,253 @@
+@import '../../variables';
+@import '../../mixins';
+
+.container {
+  background: black;
+  //background: rgb(39, 38, 38);
+  height: 100vh;
+  color: #fff;
+  padding: 1em 1em 0em 1em;
+  position: fixed;
+  width: 300px;
+  // margin-right: 0;
+  // top: 0;
+}
+@media (max-width: 1279px) {
+  .container {
+    width: 260px;
+  }
+}
+.top {
+  //background: gray;
+  cursor: pointer;
+  img {
+    //width: 15%;
+    width: 35px;
+    height: 60px;
+    @include transitionRegular();
+    &:hover {
+      transform: rotateY(180deg);
+    }
+  }
+}
+.items {
+  margin: 1em 0 2em 0;
+  //padding-left: .5em;
+}
+.navItem {
+  //background: gray;
+  position: relative;
+  @include flexRegular(row, flex-start);
+  width: 65%;
+  max-width: 190px;
+  padding: 0.6em 0.5em 0.6em 0.5em;
+  margin-bottom: 0;
+  cursor: pointer;
+  &:hover {
+    background: rgba(128, 128, 128, 0.281);
+    border-radius: 22px;
+  }
+  img {
+    margin-right: 1em;
+    //width: 23%;
+    width: 28px;
+    height: 26px;
+  }
+  .alert {
+    position: absolute;
+    @include flexRegular(row, center);
+    align-items: center;
+    top: -3px;
+    left: 20px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    color: #fff;
+    background: #ef1c5c;
+    h4 {
+      font-size: 0.75em;
+    }
+  }
+  p {
+    font-size: 1.1em;
+  }
+  margin-bottom: 1.7em;
+}
+.disable {
+  background: rgba(128, 128, 128, 0.281);
+  border-radius: 22px;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+.tweet {
+  button {
+    @include buttonRegular($blueBtn, 80%, 42px);
+    border: 0;
+    max-width: 210px;
+    &:hover {
+      background: $blueDark;
+    }
+  }
+  img {
+    display: none;
+  }
+}
+
+.active {
+  p {
+    font-weight: bolder;
+  }
+}
+
+.bottomBox {
+  //background: rgba(128, 128, 128, 0.603);
+  position: absolute;
+  bottom: 0em;
+  width: 80%;
+}
+.btmItem {
+  @include flexRegular(row, flex-start);
+  width: 85%;
+  //max-width: 0px;
+  padding: 0.6em 0.5em 0em 0.5em;
+  margin-bottom: 0;
+  cursor: pointer;
+  &:hover {
+    background: rgba(128, 128, 128, 0.281);
+    border-radius: 22px;
+  }
+  img {
+    margin-right: 1em;
+    //width: 23%;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    // width: 150px;
+    // height: 150px;
+    transition: 0.17s ease-in;
+  }
+  p {
+    font-size: 1.1em;
+  }
+  margin-bottom: 1.7em;
+}
+
+@media (max-width: 1160px) {
+  .container {
+    width: 10%;
+    //background: gray;
+    left: 10%;
+  }
+  .items {
+    margin: 0;
+  }
+  .top {
+    //background: cornsilk;
+    width: 65%;
+    @include flexRegular(row, center);
+    align-items: center;
+  }
+  .navItem {
+    @include flexRegular(row, center);
+    padding: 1em;
+    //background: cornsilk;
+    img {
+      margin-right: 0;
+    }
+    p {
+      display: none;
+    }
+    margin-bottom: 0.9em;
+  }
+  .tweet {
+    @include flexRegular(row, center);
+    width: 65%;
+    margin-top: 2.5em;
+    //background: cornsilk;
+    //background: gray;
+    button {
+      display: none;
+    }
+    img {
+      display: block;
+      width: 90%;
+      // min-width: 38px;
+      // height: 39px;
+      //width: 90%;
+    }
+  }
+  .bottomBox {
+    //background: cornsilk;
+    width: 65%;
+    @include flexRegular(row, center);
+    .btmItem {
+      width: 100%;
+    }
+    p {
+      display: none;
+    }
+    img {
+      margin-right: 0;
+    }
+  }
+}
+@media (max-width: 881px) {
+  .tweet {
+    img {
+      display: none;
+    }
+  }
+  .bottomBox {
+    display: none;
+  }
+}
+@media (max-width: 550px) {
+  .container {
+    height: 8vh;
+    width: 100vw;
+    padding: 0.5em 0;
+    bottom: 0;
+    margin: 0;
+    z-index: 4;
+    left: 0;
+    //margin-left: -3em;
+  }
+  .top {
+    display: none;
+  }
+  .items {
+    margin: 0;
+    @include flexRegular(row, space-around);
+    align-items: center;
+    border-top: 1px solid rgba(128, 128, 128, 0.335);
+    padding: 1em 0 1em 0;
+    width: 100vw;
+  }
+  .navItem {
+    // background: gray;
+    // border: 1px solid pink;
+    width: 100%;
+    max-width: 900px;
+    padding: 0;
+    // margin-right: 2em;
+    margin-bottom: 0;
+    img {
+      margin-right: 0;
+    }
+    &:nth-of-type(4) {
+      margin-right: 0;
+    }
+    &:hover {
+      background: rgba(128, 128, 128, 0);
+      border-radius: 22px;
+    }
+  }
+  .disable {
+    padding: 0 0;
+    border-radius: 0px;
+  }
+  .tweet {
+    display: none;
+  }
+}
