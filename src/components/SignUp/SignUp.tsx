@@ -7,6 +7,7 @@ import Logo from "../../images/icons/logo.svg";
 import Close from "../../images/icons/close.svg";
 import { logger } from "../../utils/logger";
 //import { CircularProgress } from '@material-ui/core'
+import Loader from "../../images/loading.gif";
 
 interface Modal {
   modalStatus?: boolean;
@@ -112,7 +113,6 @@ const SignUp = (props: Modal) => {
     <>
       {props.modalState && (
         <div
-          //animate__animated  animate__zoomInUp
           className={`${style.modal} animate__animated animate__zoomInUp "
           ${
             props.modalStatus === false
@@ -191,14 +191,19 @@ const SignUp = (props: Modal) => {
 
                 <div className={style.formLinks}>
                   {/* <p>Forgot password?</p> */}
-                  <p onClick={props.switchModal}>Login to TwitterMini</p>
+                  <p onClick={props.switchModal}>Login to BlueBird</p>
                 </div>
 
                 <button type="submit" disabled={isLoading}>
-                  {isLoading
-                    ? // <CircularProgress color="inherit" size="25px" /> add loader icon
-                      ""
-                    : "Next"}
+                  {isLoading ? (
+                    <img
+                      src={Loader}
+                      alt="loading..."
+                      style={{ height: "45px", width: "45px" }}
+                    />
+                  ) : (
+                    "Next"
+                  )}
                 </button>
                 <p className={style.errMsg}>{response.error}</p>
                 <p className={style.successMsg}>{response.success}</p>

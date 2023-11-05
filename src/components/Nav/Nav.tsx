@@ -1,9 +1,9 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 import style from "./Nav.module.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext.jsx";
-import { get } from "../../utils/axiosLib";
-import { logger } from "../../utils/logger";
+// import { get } from "../../utils/axiosLib";
+// import { logger } from "../../utils/logger";
 
 // assets
 import Logo from "../../images/icons/logo.svg";
@@ -21,32 +21,39 @@ import avi from "../../images/others/avatar.jpeg";
 const Nav = (props: any) => {
   const page: string = props.currentPage;
   const navigate = useNavigate();
-  const [authState] = useContext<any>(AuthContext);
+  const [authState, setAuthState] = useContext<any>(AuthContext);
   const user: any = authState.user.user;
   const [notes, setNotes] = useState<any>([]);
 
   const handleLogout = () => {
-    navigate("/auth");
     localStorage.removeItem("user");
-    window.location.reload();
+    setAuthState({
+      ...authState,
+      user: null,
+      isFetching: false,
+      error: false,
+    });
+    navigate("/auth");
+
+    //window.location.reload();
   };
 
-  useEffect(() => {
-    const loadNotifications = async () => {
-      try {
-        const endpoint = `${
-          import.meta.env.VITE_APP_BASE_URL
-        }user/notifications/temp/${user._id}`;
-        const notReq = await get(endpoint);
-        logger(notReq);
-        setNotes(notReq.data);
-        // logger(notReq.data.length)
-      } catch (err) {
-        logger(err);
-      }
-    };
-    loadNotifications();
-  }, [user._id]);
+  // useEffect(() => {
+  //   const loadNotifications = async () => {
+  //     try {
+  //       const endpoint = `${
+  //         import.meta.env.VITE_APP_BASE_URL
+  //       }user/notifications/temp/${user._id}`;
+  //       const notReq = await get(endpoint);
+  //       logger(notReq);
+  //       setNotes(notReq.data);
+  //       // logger(notReq.data.length)
+  //     } catch (err) {
+  //       logger(err);
+  //     }
+  //   };
+  //   loadNotifications();
+  // }, [user._id]);
 
   return (
     <div>
@@ -90,20 +97,22 @@ const Nav = (props: any) => {
 
               <p>Notifications</p>
             </Link>
-            <div
-              // className={
-              //   page === 'Messsage'
-              //     ? style.navItem + ' ' + style.active
-              //     : style.navItem
-              // }
-              className={style.navItem + " " + style.disable}
+            <Link
+              className={
+                page === "Messsage"
+                  ? style.navItem + " " + style.active
+                  : style.navItem
+              }
+              //className={style.navItem + " "}
+              to={`/conversations`}
             >
               <img
-                src={page === "Message" ? Messagefill : Message}
-                alt="messages"
+                src={page === "Conversations" ? Messagefill : Message}
+                style={{ width: "24px", height: "22px" }}
+                alt="Conversations"
               />
-              <p>Messages</p>
-            </div>
+              <p>Conversations</p>
+            </Link>
             <Link
               className={
                 page === "Profile"
@@ -119,10 +128,10 @@ const Nav = (props: any) => {
               <p>Profile</p>
             </Link>
 
-            <div className={style.tweet}>
+            {/* <div className={style.tweet}>
               <button>Tweet</button>
               <img src={Tweet} alt="tweet" />
-            </div>
+            </div> */}
 
             <div className={style.bottomBox}>
               <div className={style.btmItem} onClick={handleLogout}>

@@ -166,7 +166,7 @@ const Profile = () => {
           latestFollow: Math.random() * 10,
         });
         logger("unfollow>>", unfollowReq);
-        logger(authState.user.user.following);
+        //logger(authState.user.user.following);
       } else {
         setFollowed(true);
         const endpoint =
@@ -186,7 +186,7 @@ const Profile = () => {
           latestFollow: Math.random() * 10,
         });
         logger("follow>>", followReq);
-        logger(authState.user.user.following);
+        //logger(authState.user.user.following);
       }
     } catch (err) {
       logger(err);
@@ -200,7 +200,6 @@ const Profile = () => {
     );
     //logger('url user??  ', paramUser._id)
     //console.log('current context >>> ', currentUser.following)
-    console.log("img>>>");
   }, [currentUser.following, paramUser._id]);
 
   const loadTweets = async () => {
@@ -214,7 +213,7 @@ const Profile = () => {
         import.meta.env.VITE_APP_BASE_URL
       }post/tweets/${username}`;
       const tweetsReq = await get(endpoint);
-      logger("tweets", tweetsReq.data);
+      // logger("tweets", tweetsReq.data);
       setTweetView({
         tweetType: "tweets",
         currentTweets: tweetsReq.data,

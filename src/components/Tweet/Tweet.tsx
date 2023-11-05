@@ -54,7 +54,7 @@ const Tweet = (props: any) => {
   });
 
   useEffect(() => {
-    logger("likes from tweet >>>", tweet.likes);
+    //logger("likes from tweet >>>", tweet.likes);
     setLikeStat({
       like: tweet.likes.length,
       isLiked: tweet.likes.includes(userObj._id),
@@ -147,13 +147,13 @@ const Tweet = (props: any) => {
     setInfo({
       infoState: true,
       infoStatus: true,
-      infoRes: "You can't retweet or like your own tweet on twitterMini",
+      infoRes: "You can't retweet or like your own tweet on BlueBird",
     });
     setTimeout(() => {
       setInfo({
         infoState: true,
         infoStatus: false,
-        infoRes: "You can't retweet or like your own tweet on twitterMini",
+        infoRes: "You can't retweet or like your own tweet on BlueBird",
       });
     }, 2500);
     setTimeout(() => {

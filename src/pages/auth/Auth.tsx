@@ -1,87 +1,91 @@
-import { useState } from 'react'
+import { useState } from "react";
 //import ReactDOM from 'react-dom'
-import style from './Auth.module.scss'
-import LImg from '../../images/utils/land2.png'
-import Logo from '../../images/icons/logo.svg'
+import style from "./Auth.module.scss";
+import LImg from "../../images/utils/land01.webp";
+import Logo from "../../images/icons/logo.svg";
 //import { AnimatePresence } from 'framer-motion'
 
-import SignIn from '../../components/Login/SignIn'
-import SignUp from '../../components/SignUp/SignUp'
+import SignIn from "../../components/Login/SignIn";
+import SignUp from "../../components/SignUp/SignUp";
 
 //const portalElement: any = document.getElementById('modalOverlay')
-
 interface Modal {
-  modal?: string
-  modalStatus?: boolean
-  modalState?: boolean
+  modal?: string;
+  modalStatus?: boolean;
+  modalState?: boolean;
 }
 
 const Auth = () => {
   // const [modal, setModal] = useState<string>('None')
 
   const [modalValues, setModalValues] = useState<Modal>({
-    modal: 'None',
+    modal: "None",
     modalStatus: false,
     modalState: false,
-  })
+  });
 
   const handleModal = () => {
     setTimeout(() => {
       setModalValues({
         ...modalValues,
-        modal: 'None',
+        modal: "None",
         modalState: false,
-      })
-    }, 300)
+      });
+    }, 300);
     setModalValues({
       ...modalValues,
       modalStatus: false,
-    })
-  }
+    });
+  };
   const handleSignIn = () => {
     setModalValues({
       ...modalValues,
-      modal: 'SignIn',
+      modal: "SignIn",
       modalState: true,
       modalStatus: true,
-    })
-  }
-
+    });
+  };
+  // const google = () => {
+  //   window.open(`${import.meta.env.VITE_APP_BASE_URL}auth/google`, "_self");
+  // };
+  // const twitter = () => {
+  //   window.open(`${import.meta.env.VITE_APP_BASE_URL}auth/twitter`, "_self");
+  // };
   const handleSignUp = () => {
     setModalValues({
       ...modalValues,
-      modal: 'SignUp',
+      modal: "SignUp",
       modalState: true,
       modalStatus: true,
-    })
-  }
+    });
+  };
 
   const switchModal = () => {
-    if (modalValues.modal === 'SignUp') {
+    if (modalValues.modal === "SignUp") {
       setModalValues({
         ...modalValues,
-        modal: 'SignIn',
-      })
+        modal: "SignIn",
+      });
     }
-    if (modalValues.modal === 'SignIn') {
+    if (modalValues.modal === "SignIn") {
       setModalValues({
         ...modalValues,
-        modal: 'SignUp',
-      })
+        modal: "SignUp",
+      });
     }
-  }
+  };
 
-  localStorage.removeItem('user')
+  localStorage.removeItem("user");
 
   return (
     <div className={style.container}>
       {modalValues.modalState && (
         <>
           <div
-            className={style.overlay + ' animate__animated animate__fadeIn'}
+            className={style.overlay + " animate__animated animate__fadeIn"}
             onClick={handleModal}
           ></div>
-          {modalValues.modal === 'SignIn' && (
+          {modalValues.modal === "SignIn" && (
             <SignIn
               handleModal={handleModal}
               switchModal={switchModal}
@@ -89,7 +93,7 @@ const Auth = () => {
               modalStatus={modalValues.modalStatus}
             />
           )}
-          {modalValues.modal === 'SignUp' && (
+          {modalValues.modal === "SignUp" && (
             <SignUp
               handleModal={handleModal}
               switchModal={switchModal}
@@ -110,12 +114,12 @@ const Auth = () => {
             </div>
             <div className={style.rightBody}>
               <h1>Happening now..</h1>
-              <h2>Join TwitterMini today</h2>
-              <button onClick={handleSignUp}>Sign up</button>
+              <h2>Join BlueBird today</h2>
+              <button onClick={handleSignUp}>Sign up </button>
             </div>
             <div className={style.rightBottom}>
               <p className={style.termsBtm}>
-                By signing up you agree to the <span>Terms of Service</span> and{' '}
+                By signing up you agree to the <span>Terms of Service</span> and{" "}
                 <span>Privacy Policy</span>, including <span>Cookie Use</span>.
               </p>
               <p className={style.loginBtm}>
@@ -128,7 +132,7 @@ const Auth = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Auth
+export default Auth;

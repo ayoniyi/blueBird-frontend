@@ -1,5 +1,5 @@
-@import '../../variables';
-@import '../../mixins';
+@import "../../variables";
+@import "../../mixins";
 
 // .overlay {
 //   width: 100%;
@@ -109,7 +109,8 @@
       @include buttonRegular($blueDark, 100%, 42px);
     }
     &:disabled {
-      background: gray;
+      background: #000;
+      border: 1px solid $blueTxt;
       cursor: not-allowed;
     }
   }

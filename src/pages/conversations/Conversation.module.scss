@@ -1,0 +1,184 @@
+@import "../../variables";
+@import "../../mixins";
+
+.appContainer {
+  width: 100%;
+  position: relative;
+  margin: 0 auto;
+  @include gridRegular(0);
+  grid-template-columns: 320px 2fr;
+}
+.container {
+  //background: pink;
+  @include flexRegular(row, flex-start);
+  align-items: flex-start;
+}
+.left {
+  width: 40%;
+  border-left: 1px solid #2f3336;
+  min-height: 100%;
+  height: 100vh;
+}
+.convoBox {
+  cursor: pointer;
+  padding: 1em;
+  border-bottom: 1px solid #2f3336;
+  @include flexRegular(row, flex-start);
+  img {
+    margin-right: 1em;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  &:hover {
+    background: #1a8edb35;
+  }
+}
+.convoBoxTxt {
+  @include flexRegular(column, flex-start);
+  align-items: flex-start;
+}
+.cbtop {
+  @include flexRegular(row, flex-start);
+  h3 {
+    color: #fff;
+  }
+  span {
+    margin-left: 0.5em;
+    color: gray;
+    font-size: 0.9em;
+  }
+  p {
+    margin-left: 5em;
+    color: #ffffff;
+    font-size: 0.88em;
+  }
+}
+.cbmsg {
+  margin-top: 1em;
+  color: gray;
+  margin-left: 0;
+}
+
+.top {
+  padding: 2em 1em;
+  border-bottom: 1px solid #2f3336;
+  h2 {
+    color: #fff;
+    font-size: 1.1em;
+  }
+}
+.right {
+  width: 60%;
+  border-left: 1px solid #2f3336;
+  border-right: 1px solid #2f3336;
+  min-height: 100%;
+  height: 100vh;
+}
+.messengerContainer,
+.noMessages {
+  height: 90%;
+  position: relative;
+}
+.noMessages {
+  text-align: center;
+  @include flexRegular(column, center);
+  h2 {
+    color: #fff;
+  }
+  p {
+    margin-top: 0.3em;
+    color: gray;
+    font-size: 0.95em;
+  }
+}
+.chatMessages {
+  padding: 2em 0;
+  width: 95%;
+  height: calc(100% - 60px);
+  overflow: scroll;
+  margin: auto;
+}
+.messageBoxOwner {
+  @include flexRegular(row, flex-end);
+  align-items: flex-end;
+}
+.messageBoxOther {
+  @include flexRegular(row, flex-start);
+  align-items: flex-end;
+}
+.messageBoxOwner,
+.messageBoxOther {
+  margin-bottom: 2em;
+  color: #fff;
+  img {
+    margin-right: 0.3em;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+}
+
+.messageOwner,
+.messageOther {
+  //width: 65%;
+  max-width: 65%;
+  padding: 0.8em 1.5em;
+  position: relative;
+  span {
+    position: absolute;
+    bottom: -1.5em;
+    font-size: 0.75em;
+    color: gray;
+  }
+}
+.messageOwner {
+  border-radius: 8px 8px 0px 8px;
+  //border: 1px solid var(--primary-colors-primary-1000, #20709b);
+  background: #1d9bf0;
+  @include flexRegular(row, flex-end);
+}
+.messageOther {
+  border-radius: 8px 8px 8px 0px;
+  // border: 1px solid #000;
+
+  background: #2f3336;
+}
+.chatBtm {
+  position: absolute;
+  background: #000;
+  width: 100%;
+  bottom: 0;
+  @include flexRegular(row, flex-start);
+  border-top: 1px solid #2f3336;
+  padding: 1em 0.5em;
+  input {
+    margin: 0 0.5em;
+    width: 100%;
+    height: 46px;
+    color: #fff;
+    border-radius: 31px;
+    border: 1px solid rgba(128, 128, 128, 0.192);
+    background: rgba(128, 128, 128, 0.151);
+    padding: 0 0 0 1em;
+    font-size: 0.9em;
+    outline: none;
+    transition: 0.2s ease-in;
+    &:focus {
+      border: 1px solid #1d9bf0;
+      transition: 0.2s ease-in;
+    }
+  }
+}
+@media (max-width: 1080px) {
+  .appContainer {
+    width: 100%;
+  }
+}
+@media (min-width: 1300px) {
+  .appContainer {
+    width: 1280px;
+  }
+}

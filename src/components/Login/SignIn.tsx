@@ -7,6 +7,7 @@ import { post } from "../../utils/axiosLib";
 import { logger } from "../../utils/logger";
 import { useNavigate } from "react-router-dom";
 // import { CircularProgress } from '@material-ui/core'
+import Loader from "../../images/loading.gif";
 
 import Logo from "../../images/icons/logo.svg";
 import Close from "../../images/icons/close.svg";
@@ -98,7 +99,6 @@ const Login: React.FC<Modal> = (props) => {
     <>
       {props.modalState && (
         <div
-          //animate__animated  animate__zoomInUp
           className={`${style.modal} animate__animated animate__zoomInUp "
           ${
             props.modalStatus === false
@@ -136,13 +136,18 @@ const Login: React.FC<Modal> = (props) => {
                 />
                 <div className={style.formLinks}>
                   <p>Forgot password?</p>
-                  <p onClick={props.switchModal}>Sign up to TwitterMini</p>
+                  <p onClick={props.switchModal}>Sign up to BlueBird</p>
                 </div>
                 <button disabled={authState.isFetching}>
-                  {authState.isFetching
-                    ? // <CircularProgress color="inherit" size="25px" /> add loader icon
-                      ""
-                    : "Next"}
+                  {authState.isFetching ? (
+                    <img
+                      src={Loader}
+                      alt="loading..."
+                      style={{ height: "25px", width: "25px" }}
+                    />
+                  ) : (
+                    "Next"
+                  )}
                 </button>
                 <p className={style.errMsg}>{response.error}</p>
                 <p className={style.successMsg}>{response.success}</p>
