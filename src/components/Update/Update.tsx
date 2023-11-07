@@ -93,8 +93,8 @@ const Update: React.FC<Modal> = (props) => {
       userId: user._id,
     };
     const endpoint = `${import.meta.env.VITE_APP_BASE_URL}user/${user._id}`;
-    const updateReq = await put(endpoint, userObj);
-    logger(updateReq);
+    await put(endpoint, userObj);
+    //logger(updateReq);
     setAuthState({
       ...authState,
       user: {
