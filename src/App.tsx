@@ -17,6 +17,7 @@ import Profile from "./pages/profile/Profile";
 import Notifications from "./pages/notifications/Notifications";
 import SingleTweet from "./pages/singletweet/SingleTweet";
 import Conversations from "./pages/conversations/Conversations";
+import AllUsers from "./pages/users/AllUsers";
 
 const queryClient = new QueryClient();
 
@@ -34,6 +35,7 @@ function App() {
             <Route path="/notifications" element={<Notifications />} />
             <Route path="/singletweet/:tweetId" element={<SingleTweet />} />
             <Route path="/conversations" element={<Conversations />} />
+            <Route path="/users" element={<AllUsers />} />
           </Routes>
         </Router>
       </QueryClientProvider>

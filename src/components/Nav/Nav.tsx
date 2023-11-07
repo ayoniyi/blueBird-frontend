@@ -15,7 +15,9 @@ import Notifications from "../../images/icons/nav/bell.svg";
 import Notificationsfill from "../../images/icons/nav/bell-fill.svg";
 import Profile from "../../images/icons/nav/profile.svg";
 import Profilefill from "../../images/icons/nav/profile-fill.svg";
-import Tweet from "../../images/icons/nav/tweet2.svg";
+import Users from "../../images/icons/users.svg";
+import UsersFill from "../../images/icons/users-fill.svg";
+//import Tweet from "../../images/icons/nav/tweet2.svg";
 import avi from "../../images/others/avatar.jpeg";
 
 const Nav = (props: any) => {
@@ -126,6 +128,21 @@ const Nav = (props: any) => {
                 alt="profile"
               />
               <p>Profile</p>
+            </Link>
+            <Link
+              className={
+                page === "Users"
+                  ? style.navItem + " " + style.active
+                  : style.navItem
+              }
+              to="/users"
+            >
+              <img
+                src={page === "Users" ? UsersFill : Users}
+                style={{ width: "24px", height: "22px" }}
+                alt="users"
+              />
+              <p>Users</p>
             </Link>
 
             {/* <div className={style.tweet}>

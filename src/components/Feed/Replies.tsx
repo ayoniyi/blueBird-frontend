@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext.jsx";
 import { get } from "../../utils/axiosLib";
 import { logger } from "../../utils/logger";
-//import { CircularProgress } from '@material-ui/core'
+import { CircularProgress } from "@material-ui/core";
 import Tweet from "../Tweet/Tweet";
 
 import style from "./Feed.module.scss";
@@ -39,7 +39,7 @@ const Replies = (props: any) => {
     <div>
       {isLoading ? (
         <div className={style.loaderBox}>
-          {/* <CircularProgress color="inherit" size="45px" /> add loader icon */}
+          <CircularProgress color="inherit" size="45px" />
         </div>
       ) : (
         <>

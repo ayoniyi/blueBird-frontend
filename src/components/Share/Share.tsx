@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import style from "./Share.module.scss";
-import { Cancel } from "@material-ui/icons";
+import { Cancel, CompareArrowsOutlined } from "@material-ui/icons";
 import { post, get, put } from "../../utils/axiosLib";
 import { logger } from "../../utils/logger";
 import { AuthContext } from "../../context/AuthContext";
@@ -35,6 +35,7 @@ const Share = () => {
       };
       const s3UrlReq = await get(s3endpoint);
       let s3Url = s3UrlReq.data.gurl;
+      logger("s3..", s3Url);
       const s3Upload = await put(`${s3Url}`, file, reqConfig);
       logger(s3Upload);
       s3ImgUrl = s3Url.split("?")[0];
@@ -46,19 +47,24 @@ const Share = () => {
       userId: user._id,
       desc: tweet,
       img: s3ImgUrl,
+      tweetedAt: Date.now(),
     };
     const endpoint = `${import.meta.env.VITE_APP_BASE_URL}post`;
     const headers = {
       "auth-token": `${token}`,
       "Content-Type": "application/json",
     };
-    const newPostReq = await post(endpoint, newTweet, headers);
+    await post(endpoint, newTweet, headers);
+    logger("new", newTweet);
     setAuthState({
       ...authState,
       isFetching: false,
+      tweets: (prev: any) => [...prev, tweet],
       latestTweet: tweet,
     });
-    logger(newPostReq);
+    console.log("new", newTweet);
+    //setMessages((prev) => [...prev, arrivalMessage]);
+
     setTweet("");
     setFile(null);
   };

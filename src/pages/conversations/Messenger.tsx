@@ -2,9 +2,9 @@ import { useRef, useEffect, useState } from "react";
 import style from "./Conversation.module.scss";
 import pic from "../../images/icons/image.svg";
 import send from "../../images/icons/send.svg";
-import avi from "../../images/others/avatar.jpeg";
+//import avi from "../../images/others/avatar.jpeg";
 import { get, post } from "../../utils/axiosLib";
-import { logger } from "../../utils/logger";
+//import { logger } from "../../utils/logger";
 import { format } from "timeago.js";
 import { io } from "socket.io-client";
 
@@ -61,6 +61,7 @@ const Messenger = ({ currentChat, user }) => {
       sender: user._id,
       text: newMessage,
       conversationId: currentChat._id,
+      startedAt: Date.now(),
     };
 
     const receiverId = currentChat.users.find((u) => u !== user._id);
@@ -115,7 +116,7 @@ const Messenger = ({ currentChat, user }) => {
                 }
                 key={m._id}
               >
-                {m.sender !== user._id && <img src={avi} alt="avatar" />}
+                {/* {m.sender !== user._id && <img src={avi} alt="avatar" />} */}
                 <div
                   // className={style.messageOwner}
                   className={
@@ -127,7 +128,7 @@ const Messenger = ({ currentChat, user }) => {
                   <p>{m.text}</p>
                   <span>
                     {/* Tue 12:12 AM */}
-                    {format(m.createdAt)}
+                    {format(m.startedAt) || format(m.createdAt)}
                   </span>
                 </div>
               </div>
@@ -158,6 +159,67 @@ const Messenger = ({ currentChat, user }) => {
         </div>
       ) : (
         <div className={style.noMessages}>
+          <h2>You have no conversations selected</h2>
+          <p>Choose from your existing conversations or start a new one</p>
+        </div>
+      )}
+      {currentChat ? (
+        <div className={style.messengerContainerM}>
+          <div className={style.chatMessages}>
+            {messages?.map((m: any) => (
+              <div
+                ref={ref}
+                //className={style.messageBoxOwner}
+                className={
+                  m.sender === user._id
+                    ? style.messageBoxOwner
+                    : style.messageBoxOther
+                }
+                key={m._id}
+              >
+                {/* {m.sender !== user._id && <img src={avi} alt="avatar" />} */}
+                <div
+                  // className={style.messageOwner}
+                  className={
+                    m.sender === user._id
+                      ? style.messageOwner
+                      : style.messageOther
+                  }
+                >
+                  <p>{m.text}</p>
+                  <span>
+                    {/* Tue 12:12 AM */}
+                    {format(m.startedAt) || format(m.createdAt)}
+                  </span>
+                </div>
+              </div>
+            ))}
+            {/* <div className={style.messageBoxOther}>
+              <img src={avi} alt="avatar" />
+              <div className={style.messageOther}>
+                <p>Check check check check</p>
+                <span>Tue 12:12 AM</span>
+              </div>
+            </div> */}
+          </div>
+          <div className={style.chatBtm}>
+            <img src={pic} alt="add image" />
+            <input
+              type="text"
+              placeholder="write a message.."
+              onChange={(e) => setNewMessage(e.target.value)}
+              value={newMessage}
+            />
+            <img
+              style={{ cursor: "pointer" }}
+              onClick={handleSubmit}
+              src={send}
+              alt="send"
+            />
+          </div>
+        </div>
+      ) : (
+        <div className={style.noMessagesM}>
           <h2>You have no conversations selected</h2>
           <p>Choose from your existing conversations or start a new one</p>
         </div>

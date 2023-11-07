@@ -13,7 +13,7 @@ const Feed = () => {
   const [tweets, setTweets] = useState<any>([]);
   //const [isLoading, setIsLoading] = useState<boolean>(false);
   //const [errMsg, setErrMsg] = useState<string>("");
-  const [authState] = useContext<any>(AuthContext);
+  const [authState, setAuthState] = useContext<any>(AuthContext);
 
   const token: string = authState.user.token;
   const user: any = authState.user.user;
@@ -42,32 +42,39 @@ const Feed = () => {
           );
         })
       );
+
+      setAuthState({
+        ...authState,
+        tweets: data,
+      });
     }
   }, [data]);
 
-  useEffect(() => {
-    const getTweets = async () => {
-      //setIsLoading(true)
-      try {
-        const tweetsReq = await get(endpoint, headers);
-        setTweets(
-          //<< quick sort algorithm
-          tweetsReq.data.sort((p1: any, p2: any) => {
-            return (
-              new Date(p2.createdAt).valueOf() -
-              new Date(p1.createdAt).valueOf()
-            );
-          })
-        );
-      } catch (err: any | undefined | {}) {
-        logger(err);
-        //setErrMsg("Tweets aren't loading right now...")
-      }
-      //setIsLoading(false)
-    };
-    getTweets();
-    logger(authState.latestTweet);
-  }, [authState.latestTweet]);
+  logger("tweets?", authState);
+
+  // useEffect(() => {
+  //   const getTweets = async () => {
+  //     //setIsLoading(true)
+  //     try {
+  //       const tweetsReq = await get(endpoint, headers);
+  //       setTweets(
+  //         //<< quick sort algorithm
+  //         tweetsReq.data.sort((p1: any, p2: any) => {
+  //           return (
+  //             new Date(p2.createdAt).valueOf() -
+  //             new Date(p1.createdAt).valueOf()
+  //           );
+  //         })
+  //       );
+  //     } catch (err: any | undefined | {}) {
+  //       logger(err);
+  //       //setErrMsg("Tweets aren't loading right now...")
+  //     }
+  //     //setIsLoading(false)
+  //   };
+  //   getTweets();
+  //   logger(authState.latestTweet);
+  // }, [authState.latestTweet]);
 
   return (
     <div>

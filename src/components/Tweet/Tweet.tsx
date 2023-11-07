@@ -235,7 +235,9 @@ const Tweet = (props: any) => {
                 <img className={style.right2} src={V} alt="verified" />
               )}
               {/* <p className={style.time}>10h</p> */}
-              <p className={style.time}>{format(tweet.createdAt)}</p>
+              <p className={style.time}>
+                {format(tweet?.tweetedAt || tweet.createdAt)}
+              </p>
             </div>
             {userObj._id === tweet.userId && (
               <div className={style.more}>

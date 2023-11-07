@@ -1,5 +1,5 @@
-@import '../../variables';
-@import '../../mixins';
+@import "../../variables";
+@import "../../mixins";
 .header {
   position: fixed;
   z-index: 3;
@@ -45,7 +45,7 @@
   position: relative;
 }
 .coverImgBox {
-  height: 290px;
+  height: 260px;
   background: gray;
   img {
     width: 100%;
@@ -84,7 +84,9 @@
   //background: gray;
   .pdTop {
     @include flexRegular(row, flex-end);
+    //background: lavender;
     button {
+      margin-left: 1em;
       @include buttonRegular(none, 20%, 42px);
       outline: none;
       border: 1px solid #2f3336;
@@ -93,6 +95,17 @@
       &:hover {
         @include buttonRegular(rgba(128, 128, 128, 0.24), 20%, 42px);
       }
+    }
+  }
+  .messageCircle {
+    cursor: pointer;
+    @include flexRegular(row, center);
+    padding: 0.5em;
+    border-radius: 50%;
+    border: 1px solid #2f3336;
+    img {
+      width: 25px;
+      height: 25px;
     }
   }
   .pdBody {

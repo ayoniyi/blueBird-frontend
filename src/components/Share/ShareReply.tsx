@@ -1,10 +1,10 @@
 import { useState, useContext } from "react";
 import style from "./Share.module.scss";
-//import { Cancel } from '@material-ui/icons'
+import { Cancel } from "@material-ui/icons";
 import { post, get, put } from "../../utils/axiosLib";
 import { logger } from "../../utils/logger";
 import { AuthContext } from "../../context/AuthContext";
-//import { CircularProgress } from '@material-ui/core'
+import { CircularProgress } from "@material-ui/core";
 
 import avi from "../../images/others/avatar.jpeg";
 import pic from "../../images/icons/image.svg";
@@ -47,6 +47,7 @@ const ShareReply = (props: any) => {
       userId: user._id,
       desc: tweet,
       img: s3ImgUrl,
+      tweetedAt: Date.now(),
     };
     const endpoint = `${
       import.meta.env.VITE_APP_BASE_URL
@@ -84,7 +85,7 @@ const ShareReply = (props: any) => {
         {file && (
           <div className={style.fileContainer}>
             <img src={URL.createObjectURL(file)} alt="post media" />
-            {/* <Cancel className={style.cancel} onClick={() => setFile(null)} /> add cancel icon */}
+            <Cancel className={style.cancel} onClick={() => setFile(null)} />
           </div>
         )}
         <div className={style.bottom}>
@@ -101,10 +102,11 @@ const ShareReply = (props: any) => {
             </label>
           </div>
           <button disabled={tweet.length < 1 || authState.isFetching}>
-            {authState.isFetching
-              ? // <CircularProgress color="inherit" size="25px"  add loader icon />
-                ""
-              : "Reply"}
+            {authState.isFetching ? (
+              <CircularProgress color="inherit" size="25px" />
+            ) : (
+              "Reply"
+            )}
           </button>
         </div>
       </form>

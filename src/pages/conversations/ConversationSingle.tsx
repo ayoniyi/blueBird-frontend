@@ -3,6 +3,7 @@ import avi from "../../images/others/avatar.jpeg";
 import style from "./Conversation.module.scss";
 import { get } from "../../utils/axiosLib";
 import { logger } from "../../utils/logger";
+import { format } from "timeago.js";
 
 const ConversationSingle = (props: any) => {
   const [user, setUser] = useState<any>(null);
@@ -27,9 +28,10 @@ const ConversationSingle = (props: any) => {
           <h3>
             {user?.name} <span>@{user?.username}</span>
           </h3>
-          <p>Jan 20</p>
+          {/* <p>Jan 20</p> */}
         </div>
-        <p className={style.cbmsg}>this is a rando msg...</p>
+
+        <p className={style.cbmsg}>{format(props?.convo?.startedAt) || " "}</p>
       </div>
     </div>
   );

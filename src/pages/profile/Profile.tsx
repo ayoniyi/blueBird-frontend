@@ -1,13 +1,13 @@
 import { useContext, useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { AuthContext } from "../../context/AuthContext";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import AppContainer from "../../components/AppContainer/AppContainer";
 import Nav from "../../components/Nav/Nav";
 import RightBar from "../../components/RightBar/RightBar";
 import PageContent from "../../components/PageContent/PageContent";
 //import { CircularProgress } from "@material-ui/core";
-import { get, put } from "../../utils/axiosLib";
+import { get, post, put } from "../../utils/axiosLib";
 import { logger } from "../../utils/logger";
 import { useParams } from "react-router";
 import Update from "../../components/Update/Update";
@@ -19,6 +19,7 @@ import arrow from "../../images/icons/arrow.svg";
 import location from "../../images/icons/locale.svg";
 import Cover from "../../images/others/cover.jpeg";
 import avi from "../../images/others/avatar.jpeg";
+import Message from "../../images/icons/nav/message.svg";
 
 const portalElement: any = document.getElementById("modalOverlay");
 
@@ -35,6 +36,7 @@ interface Status {
 
 const Profile = () => {
   const username = useParams().username;
+  const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState<string>("Profile");
   const [paramUser, setParamUser] = useState<any>({});
   const [status, setStatus] = useState<Status>({
@@ -326,6 +328,18 @@ const Profile = () => {
       });
     }
   };
+
+  const handleMessage = async () => {
+    const endpoint = `${import.meta.env.VITE_APP_BASE_URL}conversation/start/${
+      currentUser._id
+    }/${paramUser._id}`;
+    const obj = {
+      startedAt: Date.now(),
+    };
+    const res = await post(endpoint, obj);
+    logger("res", res);
+    navigate("/conversations");
+  };
   return (
     <AppContainer>
       <Nav currentPage={currentPage} paramUser={paramUser} />
@@ -356,9 +370,12 @@ const Profile = () => {
             </>
           )}
           <div className={style.headerPro}>
-            <Link to="/" className={style.back}>
-              <img src={arrow} alt="back" />
-            </Link>
+            {/* <Link to="/" className={style.back}> */}
+            <div className={style.back} onClick={() => navigate(-1)}>
+              <img style={{ cursor: "pointer" }} src={arrow} alt="back" />
+            </div>
+
+            {/* </Link> */}
             <div className={style.userBox}>
               <h1>{paramUser.name}</h1>
               <p>{usersTweets} Tweets</p>
@@ -375,6 +392,11 @@ const Profile = () => {
             />
             <div className={style.profileDesc}>
               <div className={style.pdTop}>
+                {paramUser.username !== currentUser.username && (
+                  <div className={style.messageCircle} onClick={handleMessage}>
+                    <img src={Message} alt="messsage" />
+                  </div>
+                )}
                 {paramUser.username === currentUser.username && (
                   <button onClick={handleUpdate}>Edit Profile</button>
                 )}

@@ -5,7 +5,7 @@ import {
 } from "react";
 import { useParams } from "react-router";
 //import { AuthContext } from '../../context/AuthContext'
-//import { CircularProgress } from '@material-ui/core'
+import { CircularProgress } from "@material-ui/core";
 import { get } from "../../utils/axiosLib";
 import { logger } from "../../utils/logger";
 import { useNavigate } from "react-router-dom";
@@ -37,6 +37,7 @@ const SingleTweet = () => {
         const endpoint = `${import.meta.env.VITE_APP_BASE_URL}post/${tweetId}`;
         const tweetReq = await get(endpoint);
         setTweet(tweetReq.data);
+        logger("tweetData", tweetReq);
         setIsLoading(false);
       } catch (err) {
         logger(err);
@@ -76,7 +77,7 @@ const SingleTweet = () => {
             <div className={style.tweetBox}>
               {isLoading ? (
                 <div className={style2.loaderBox}>
-                  {/* <CircularProgress color="inherit" size="45px" /> add loader icon */}
+                  <CircularProgress color="inherit" size="45px" />
                 </div>
               ) : (
                 <>

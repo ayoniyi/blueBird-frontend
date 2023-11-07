@@ -1,9 +1,10 @@
 import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../context/AuthContext";
-//import { CircularProgress } from '@material-ui/core'
+import { CircularProgress } from "@material-ui/core";
 import { get } from "../../utils/axiosLib";
 import { logger } from "../../utils/logger";
 import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import AppContainer from "../../components/AppContainer/AppContainer";
 import Nav from "../../components/Nav/Nav";
 import RightBar from "../../components/RightBar/RightBar";
@@ -16,7 +17,7 @@ import avi from "../../images/others/avatar.jpeg";
 const Notifications = () => {
   const currentPage: string = "Notifications";
   const [authState] = useContext<any>(AuthContext);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  //const [isLoading, setIsLoading] = useState<boolean>(true);
   const [notifications, setNotifications] = useState<any>([]);
   const userObj: any = authState.user.user;
 
@@ -30,30 +31,58 @@ const Notifications = () => {
   //     clearNotifications()
   //   }, [authState, setAuthState])
 
+  const endpoint = `${import.meta.env.VITE_APP_BASE_URL}user/notifications/${
+    userObj._id
+  }`;
+
+  const { isLoading, error, data } = useQuery({
+    queryKey: ["notifications"],
+    queryFn: () =>
+      get(endpoint).then((res) => {
+        return res.data;
+      }),
+  });
+
   useEffect(() => {
-    const loadNotifications = async () => {
-      try {
-        const endpoint = `${
-          import.meta.env.VITE_APP_BASE_URL
-        }user/notifications/${userObj._id}`;
-        const notReq = await get(endpoint);
-        setNotifications(notReq.data.reverse());
-        // setNotifications(
-        //   //<< quick sort algorithm
-        //   notReq.data.sort((p1: any, p2: any) => {
-        //     return (
-        //       new Date(p2.createdAt).valueOf() -
-        //       new Date(p1.createdAt).valueOf()
-        //     )
-        //   }),
-        // )
-        setIsLoading(false);
-      } catch (err) {
-        logger(err);
-      }
-    };
-    loadNotifications();
-  }, [userObj._id]);
+    if (data) {
+      setNotifications(
+        data
+          .sort((p1: any, p2: any) => {
+            return (
+              new Date(p2.createdAt).valueOf() -
+              new Date(p1.createdAt).valueOf()
+            );
+          })
+          .reverse()
+      );
+    }
+  }, [data]);
+
+  // useEffect(() => {
+  //   const loadNotifications = async () => {
+  //     try {
+  //       const endpoint = `${
+  //         import.meta.env.VITE_APP_BASE_URL
+  //       }user/notifications/${userObj._id}`;
+  //       const notReq = await get(endpoint);
+  //       setNotifications(notReq.data.reverse());
+
+  //       // setNotifications(
+  //       //   //<< quick sort algorithm
+  //       //   notReq.data.sort((p1: any, p2: any) => {
+  //       //     return (
+  //       //       new Date(p2.createdAt).valueOf() -
+  //       //       new Date(p1.createdAt).valueOf()
+  //       //     )
+  //       //   }),
+  //       // )
+  //       //setIsLoading(false);
+  //     } catch (err) {
+  //       logger(err);
+  //     }
+  //   };
+  //   loadNotifications();
+  // }, [userObj._id]);
 
   return (
     <div>
@@ -67,7 +96,7 @@ const Notifications = () => {
             <div className={style.itemBox}>
               {isLoading ? (
                 <div className={style2.loaderBox}>
-                  {/* <CircularProgress color="inherit" size="45px" /> add loader icon */}
+                  <CircularProgress color="inherit" size="45px" />
                 </div>
               ) : (
                 <>
