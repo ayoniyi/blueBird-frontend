@@ -19,7 +19,7 @@ const Conversations = () => {
       const res: any = await get(
         `${import.meta.env.VITE_APP_BASE_URL}conversation/` + user?._id
       );
-      setConversations((prevConvo) => res.data);
+      setConversations(res.data);
       logger("convos", res.data);
       // logger("user?", user);
     };

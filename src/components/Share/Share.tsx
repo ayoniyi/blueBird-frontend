@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import style from "./Share.module.scss";
-import { Cancel, CompareArrowsOutlined } from "@material-ui/icons";
+import { Cancel } from "@material-ui/icons";
 import { post, get, put } from "../../utils/axiosLib";
 import { logger } from "../../utils/logger";
 import { AuthContext } from "../../context/AuthContext";

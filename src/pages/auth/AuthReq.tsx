@@ -1,12 +1,12 @@
-import { useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+//import { useNavigate } from "react-router-dom";
 import style from "./Auth.module.scss";
 import Logo from "../../images/icons/logo.svg";
-import { AuthContext } from "../../context/AuthContext.jsx";
+//import { AuthContext } from "../../context/AuthContext.jsx";
 
 const AuthReq = () => {
-  const [authState, setAuthState] = useContext<any>(AuthContext);
-  const navigate = useNavigate();
+  // const [authState, setAuthState] = useContext<any>(AuthContext);
+  //const navigate = useNavigate();
   useEffect(() => {
     const getUser = () => {
       const headers: any = {

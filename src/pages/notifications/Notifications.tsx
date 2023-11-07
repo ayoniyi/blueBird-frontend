@@ -2,7 +2,7 @@ import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { CircularProgress } from "@material-ui/core";
 import { get } from "../../utils/axiosLib";
-import { logger } from "../../utils/logger";
+//import { logger } from "../../utils/logger";
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import AppContainer from "../../components/AppContainer/AppContainer";
@@ -35,7 +35,7 @@ const Notifications = () => {
     userObj._id
   }`;
 
-  const { isLoading, error, data } = useQuery({
+  const { isLoading, data } = useQuery({
     queryKey: ["notifications"],
     queryFn: () =>
       get(endpoint).then((res) => {
