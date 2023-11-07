@@ -1,8 +1,8 @@
-import { useContext, useState, useEffect } from "react";
-import { AuthContext } from "../../context/AuthContext";
+import { useState, useEffect } from "react";
+//import { AuthContext } from "../../context/AuthContext";
 import { CircularProgress } from "@material-ui/core";
 import { get } from "../../utils/axiosLib";
-import { logger } from "../../utils/logger";
+//import { logger } from "../../utils/logger";
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import AppContainer from "../../components/AppContainer/AppContainer";
@@ -16,10 +16,10 @@ import avi from "../../images/others/avatar.jpeg";
 
 const AllUsers = () => {
   const currentPage: string = "Users";
-  const [authState] = useContext<any>(AuthContext);
+  //const [authState] = useContext<any>(AuthContext);
   //const [isLoading, setIsLoading] = useState<boolean>(true);
   const [users, setUsers] = useState<any>([]);
-  const userObj: any = authState.user.user;
+  //  const userObj: any = authState.user.user;
 
   const endpoint = `${import.meta.env.VITE_APP_BASE_URL}user/allUsers`;
 

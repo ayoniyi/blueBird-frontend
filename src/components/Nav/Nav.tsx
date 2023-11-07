@@ -1,9 +1,9 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import style from "./Nav.module.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext.jsx";
 // import { get } from "../../utils/axiosLib";
-// import { logger } from "../../utils/logger";
+import { logger } from "../../utils/logger";
 
 // assets
 import Logo from "../../images/icons/logo.svg";
@@ -19,6 +19,7 @@ import Users from "../../images/icons/users.svg";
 import UsersFill from "../../images/icons/users-fill.svg";
 //import Tweet from "../../images/icons/nav/tweet2.svg";
 import avi from "../../images/others/avatar.jpeg";
+import { get } from "../../utils/axiosLib.js";
 
 const Nav = (props: any) => {
   const page: string = props.currentPage;
@@ -40,22 +41,22 @@ const Nav = (props: any) => {
     //window.location.reload();
   };
 
-  // useEffect(() => {
-  //   const loadNotifications = async () => {
-  //     try {
-  //       const endpoint = `${
-  //         import.meta.env.VITE_APP_BASE_URL
-  //       }user/notifications/temp/${user._id}`;
-  //       const notReq = await get(endpoint);
-  //       logger(notReq);
-  //       setNotes(notReq.data);
-  //       // logger(notReq.data.length)
-  //     } catch (err) {
-  //       logger(err);
-  //     }
-  //   };
-  //   loadNotifications();
-  // }, [user._id]);
+  useEffect(() => {
+    const loadNotifications = async () => {
+      try {
+        const endpoint = `${
+          import.meta.env.VITE_APP_BASE_URL
+        }user/notifications/temp/${user._id}`;
+        const notReq = await get(endpoint);
+        logger(notReq);
+        setNotes(notReq);
+        logger(notReq);
+      } catch (err) {
+        logger(err);
+      }
+    };
+    loadNotifications();
+  }, [user._id]);
 
   return (
     <div>
