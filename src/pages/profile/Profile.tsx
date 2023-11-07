@@ -91,7 +91,7 @@ const Profile = () => {
       }
     };
     loadProfile();
-  }, [username, currentUser.username, authState.latestFollow]);
+  }, [username, authState.latestFollow]);
 
   useEffect(() => {
     const loadTweets = async () => {
@@ -196,7 +196,7 @@ const Profile = () => {
   };
   useEffect(() => {
     setFollowed(currentUser.following.includes(paramUser._id));
-    logger("do i follow?  ", currentUser.following.includes(paramUser._id));
+    //logger("do i follow?  ", currentUser.following.includes(paramUser._id));
     //logger('url user??  ', paramUser._id)
     //logger('current context >>> ', currentUser.following)
   }, [currentUser.following, paramUser._id]);

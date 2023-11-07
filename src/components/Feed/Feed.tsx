@@ -50,7 +50,7 @@ const Feed = () => {
     }
   }, [data]);
 
-  logger("tweets?", authState);
+  // logger("tweets?", authState);
 
   // useEffect(() => {
   //   const getTweets = async () => {
