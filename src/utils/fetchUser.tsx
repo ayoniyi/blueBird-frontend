@@ -18,6 +18,6 @@ export const getUser = () => {
       return Promise.resolve(response);
     })
     .catch((err) => {
-      logger(err);
+      console.log(err);
     });
 };

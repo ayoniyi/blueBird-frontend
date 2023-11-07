@@ -7,6 +7,7 @@ import { get, post } from "../../utils/axiosLib";
 //import { logger } from "../../utils/logger";
 import { format } from "timeago.js";
 import { io } from "socket.io-client";
+import { logger } from "../../utils/logger";
 
 const Messenger = ({ currentChat, user }) => {
   const [messages, setMessages] = useState<any>([]);
