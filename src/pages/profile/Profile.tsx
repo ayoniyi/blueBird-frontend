@@ -196,12 +196,9 @@ const Profile = () => {
   };
   useEffect(() => {
     setFollowed(currentUser.following.includes(paramUser._id));
-    console.log(
-      "do i follow?  ",
-      currentUser.following.includes(paramUser._id)
-    );
+    logger("do i follow?  ", currentUser.following.includes(paramUser._id));
     //logger('url user??  ', paramUser._id)
-    //console.log('current context >>> ', currentUser.following)
+    //logger('current context >>> ', currentUser.following)
   }, [currentUser.following, paramUser._id]);
 
   const loadTweets = async () => {

@@ -62,7 +62,7 @@ const Share = () => {
       tweets: (prev: any) => [...prev, tweet],
       latestTweet: tweet,
     });
-    console.log("new", newTweet);
+    //logger("new", newTweet);
     //setMessages((prev) => [...prev, arrivalMessage]);
 
     setTweet("");

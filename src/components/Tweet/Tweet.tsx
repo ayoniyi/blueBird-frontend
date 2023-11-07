@@ -96,15 +96,15 @@ const Tweet = (props: any) => {
     try {
       const req = await axios.delete(endpoint, body);
       //return Promise.resolve({ status: req.status, data: req.data })
-      //console.log('request payload  ', body)
-      console.log(req);
+      //logger('request payload  ', body)
+      logger(req);
       setAuthState({
         ...authState,
         latestTweet: Math.random() * 10,
       });
     } catch (err) {
-      console.log("request payload  ", body);
-      console.log(" ERROR::", err);
+      logger("request payload  ", body);
+      logger(" ERROR::", err);
       //return Promise.reject(err)
     }
     setModal(false);

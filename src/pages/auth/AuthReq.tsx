@@ -2,6 +2,7 @@ import { useEffect } from "react";
 //import { useNavigate } from "react-router-dom";
 import style from "./Auth.module.scss";
 import Logo from "../../images/icons/logo.svg";
+import { logger } from "../../utils/logger";
 //import { AuthContext } from "../../context/AuthContext.jsx";
 
 const AuthReq = () => {
@@ -24,7 +25,7 @@ const AuthReq = () => {
           throw new Error("auth failed");
         })
         .then((response) => {
-          console.log(response);
+          logger(response);
           //   setAuthState({
           //     ...authState,
           //     user: response,
@@ -34,7 +35,7 @@ const AuthReq = () => {
           //   navigate("/");
         })
         .catch((err) => {
-          console.log(err);
+          logger(err);
         });
     };
     getUser();

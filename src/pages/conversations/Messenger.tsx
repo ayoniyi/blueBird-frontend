@@ -35,7 +35,7 @@ const Messenger = ({ currentChat, user }) => {
   useEffect(() => {
     socket.current.emit("addUser", user._id);
     socket.current.on("getUsers", (users) => {
-      console.log("SOCKET USERS", users);
+      logger("SOCKET USERS", users);
     });
   }, [user]);
 
@@ -49,7 +49,7 @@ const Messenger = ({ currentChat, user }) => {
         `${import.meta.env.VITE_APP_BASE_URL}message/` + currentChat?._id
       );
       setMessages(res.data);
-      //console.log("cc", currentChat);
+      //logger("cc", currentChat);
       //logger("user id>>", userId);
     };
     getMessages();

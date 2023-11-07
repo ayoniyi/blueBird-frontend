@@ -14,10 +14,10 @@ export const getUser = () => {
       throw new Error("auth failed");
     })
     .then((response) => {
-      //console.log(response);
+      //logger(response);
       return Promise.resolve(response);
     })
     .catch((err) => {
-      console.log(err);
+      logger(err);
     });
 };

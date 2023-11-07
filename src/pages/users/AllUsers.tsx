@@ -48,7 +48,7 @@ const AllUsers = () => {
   //       const endpoint = `${import.meta.env.VITE_APP_BASE_URL}user/allUsers`;
   //       const usersReq = await get(endpoint);
   //       setUsers(usersReq.data.reverse());
-  //       console.log("user>>", usersReq.data);
+  //       logger("user>>", usersReq.data);
 
   //       //setIsLoading(false);
   //     } catch (err) {
@@ -91,7 +91,7 @@ const AllUsers = () => {
                         </div>
                       </Link>
                     ))}
-                  {users.length < 1 && (
+                  {users?.length < 1 && (
                     <div className={style2.loaderBox}>
                       <p style={{ color: "gray" }}>No users</p>
                     </div>

@@ -50,7 +50,7 @@ const SignUp = (props: Modal) => {
       ...userInput,
       [event.target.name]: event.target.value,
     });
-    //console.log('are the fields empty? ' + isEmpty)
+    //logger('are the fields empty? ' + isEmpty)
   };
 
   //const isEmpty = Object.values(userInput).every((x) => x === null || x === '')
@@ -64,7 +64,7 @@ const SignUp = (props: Modal) => {
         error: "Passwords don't match!",
         success: "",
       });
-      console.log(passwordConfirm.current.value);
+      //logger(passwordConfirm.current.value);
       setIsLoading(false);
     } else {
       await setResponse({
