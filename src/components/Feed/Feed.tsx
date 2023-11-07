@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext.jsx";
 import { get } from "../../utils/axiosLib";
-import { logger } from "../../utils/logger";
+//import { logger } from "../../utils/logger";
 import { useQuery } from "@tanstack/react-query";
 //import { CircularProgress } from '@material-ui/core'
 import Tweet from "../Tweet/Tweet";

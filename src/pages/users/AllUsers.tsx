@@ -85,9 +85,9 @@ const AllUsers = () => {
                             <h2>{user.name}</h2>
                             <p>@{user.username}</p>
                           </div>
-                          <div className={style.itemBtn}>
+                          {/* <div className={style.itemBtn}>
                             <button>Follow</button>
-                          </div>
+                          </div> */}
                         </div>
                       </Link>
                     ))}
