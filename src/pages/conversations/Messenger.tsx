@@ -7,7 +7,6 @@ import { get, post } from "../../utils/axiosLib";
 //import { logger } from "../../utils/logger";
 import { format } from "timeago.js";
 import { io } from "socket.io-client";
-import { logger } from "../../utils/logger";
 
 const Messenger = ({ currentChat, user }) => {
   const [messages, setMessages] = useState<any>([]);
@@ -17,7 +16,7 @@ const Messenger = ({ currentChat, user }) => {
   const ref = useRef<null | HTMLDivElement>(null);
 
   useEffect(() => {
-    socket.current = io("ws://localhost:8900");
+    socket.current = io("ws://bluebird-socket.onrender.com");
     socket.current.on("getMessage", (data) => {
       setArrivalMessage({
         sender: data.senderId,
@@ -35,9 +34,9 @@ const Messenger = ({ currentChat, user }) => {
 
   useEffect(() => {
     socket.current.emit("addUser", user._id);
-    socket.current.on("getUsers", (users) => {
-      logger("SOCKET USERS", users);
-    });
+    // socket.current.on("getUsers", (users) => {
+    //   logger("SOCKET USERS", users);
+    // });
   }, [user]);
 
   useEffect(() => {
